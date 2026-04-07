@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="3600">
+<title>MARKET WEATHER — BTCUSDT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #040810; --bg2: #0a1020; --panel: rgba(10,20,40,0.7); --border: rgba(0,180,216,0.15);
+  --cyan: #00b4d8; --cyan-dim: rgba(0,180,216,0.4); --red: #ff4444; --red-dim: rgba(255,68,68,0.3);
+  --gold: #ffd700; --gold-dim: rgba(255,215,0,0.3); --green: #00e676; --green-dim: rgba(0,230,118,0.3);
+  --text: #c8d6e5; --text-dim: #5a6a7a; --text-bright: #e8f0f8; --yellow: #ffab00;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; line-height:1.6; min-height:100vh; }
+.container { max-width:1100px; margin:0 auto; padding:40px 24px 80px; }
+.header { text-align:center; margin-bottom:48px; }
+.header h1 { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:400; letter-spacing:6px; text-transform:uppercase; color:var(--cyan); margin-bottom:8px; }
+.header .timestamp { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-dim); letter-spacing:2px; }
+.header .mark-price { font-family:'IBM Plex Mono',monospace; font-size:42px; font-weight:600; color:var(--text-bright); margin:16px 0 8px; letter-spacing:2px; }
+.risk-orb-container { display:flex; flex-direction:column; align-items:center; margin:32px 0 48px; }
+.risk-orb { width:120px; height:120px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:28px; font-weight:600; }
+.risk-orb.red { background:radial-gradient(circle,rgba(255,68,68,0.25) 0%,rgba(255,68,68,0.05) 70%); box-shadow:0 0 40px rgba(255,68,68,0.2),0 0 80px rgba(255,68,68,0.1); color:var(--red); border:1px solid rgba(255,68,68,0.3); animation:pulse-red 3s ease-in-out infinite; }
+.risk-orb.yellow { background:radial-gradient(circle,rgba(255,171,0,0.25) 0%,rgba(255,171,0,0.05) 70%); box-shadow:0 0 40px rgba(255,171,0,0.2),0 0 80px rgba(255,171,0,0.1); color:var(--yellow); border:1px solid rgba(255,171,0,0.3); animation:pulse-yellow 3s ease-in-out infinite; }
+.risk-orb.green { background:radial-gradient(circle,rgba(0,230,118,0.25) 0%,rgba(0,230,118,0.05) 70%); box-shadow:0 0 40px rgba(0,230,118,0.2),0 0 80px rgba(0,230,118,0.1); color:var(--green); border:1px solid rgba(0,230,118,0.3); animation:pulse-green 3s ease-in-out infinite; }
+@keyframes pulse-red { 0%,100% { box-shadow:0 0 40px rgba(255,68,68,0.2),0 0 80px rgba(255,68,68,0.1); } 50% { box-shadow:0 0 60px rgba(255,68,68,0.35),0 0 120px rgba(255,68,68,0.15); } }
+@keyframes pulse-yellow { 0%,100% { box-shadow:0 0 40px rgba(255,171,0,0.2),0 0 80px rgba(255,171,0,0.1); } 50% { box-shadow:0 0 60px rgba(255,171,0,0.35),0 0 120px rgba(255,171,0,0.15); } }
+@keyframes pulse-green { 0%,100% { box-shadow:0 0 40px rgba(0,230,118,0.2),0 0 80px rgba(0,230,118,0.1); } 50% { box-shadow:0 0 60px rgba(0,230,118,0.35),0 0 120px rgba(0,230,118,0.15); } }
+.risk-label { font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:500; letter-spacing:4px; text-transform:uppercase; margin-top:16px; }
+.risk-label.red { color:var(--red); } .risk-label.yellow { color:var(--yellow); } .risk-label.green { color:var(--green); }
+.risk-summary { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-dim); margin-top:6px; letter-spacing:1px; }
+.panel { background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:24px; margin-bottom:20px; backdrop-filter:blur(10px); }
+.panel-title { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500; letter-spacing:4px; text-transform:uppercase; color:var(--cyan); margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+table { width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:12px; }
+th { text-align:left; color:var(--text-dim); font-weight:400; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:6px 8px; border-bottom:1px solid var(--border); }
+td { padding:8px; border-bottom:1px solid rgba(0,180,216,0.05); color:var(--text); }
+tr:last-child td { border-bottom:none; }
+.val-up { color:var(--green); } .val-down { color:var(--red); } .val-neutral { color:var(--yellow); } .val-cyan { color:var(--cyan); }
+.score-bar { display:flex; gap:4px; margin-top:8px; }
+.score-pip { width:100%; height:6px; border-radius:3px; background:rgba(255,255,255,0.05); }
+.score-pip.filled.red { background:var(--red); } .score-pip.filled.yellow { background:var(--yellow); } .score-pip.filled.green { background:var(--green); }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+@media (max-width:768px) { .grid-2 { grid-template-columns:1fr; } }
+.note { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-dim); margin-top:12px; line-height:1.7; }
+.note strong { color:var(--text); font-weight:500; }
+.tag { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; padding:2px 8px; border-radius:3px; letter-spacing:1px; font-weight:500; }
+.tag.long { background:var(--green-dim); color:var(--green); }
+.tag.short { background:var(--red-dim); color:var(--red); }
+.tag.neutral { background:rgba(255,255,255,0.08); color:var(--text-dim); }
+.tag.high { background:var(--red-dim); color:var(--red); }
+.tag.medium { background:var(--gold-dim); color:var(--gold); }
+.liq-row { display:flex; justify-content:space-between; padding:4px 0; font-family:'IBM Plex Mono',monospace; font-size:12px; }
+.liq-label { color:var(--text-dim); } .liq-val { color:var(--text); }
+.liq-warn { color:var(--yellow); font-size:10px; margin-left:6px; }
+.cal-event { display:flex; align-items:center; gap:12px; padding:6px 0; border-bottom:1px solid rgba(0,180,216,0.05); font-family:'IBM Plex Mono',monospace; font-size:12px; }
+.cal-time { color:var(--cyan-dim); min-width:90px; } .cal-country { color:var(--text-dim); min-width:40px; } .cal-title { color:var(--text); flex:1; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>Market Weather</h1>
+  <div class="timestamp">2026-04-07 · ~16:33 CET · BTCUSDT</div>
+  <div class="mark-price">$68,055</div>
+</div>
+
+<div class="risk-orb-container">
+  <div class="risk-orb red">8/16</div>
+  <div class="risk-label red">RED — Extreme Fear · 1/3 MIXED alignment</div>
+  <div class="risk-summary">1/3 MIXED alignment · Extreme Fear · Macro neutral</div>
+</div>
+
+<div class="panel">
+  <div class="panel-title">Score Breakdown</div>
+  <table>
+    <thead><tr><th>Factor</th><th>Value</th><th>Pts</th></tr></thead>
+    <tbody><tr><td>Fear & Greed</td><td>11 — Extreme Fear</td><td class='val-up'>+2</td></tr>
+<tr><td>Funding Rate</td><td>0.0055%</td><td class=''>+1</td></tr>
+<tr><td>Global L/S</td><td>1.31 (57%L)</td><td class=''>+1</td></tr>
+<tr><td>4h</td><td>DOWN (weak)</td><td class='val-down'>+0</td></tr>
+<tr><td>1h</td><td>SIDEWAYS</td><td class=''>+1</td></tr>
+<tr><td>5m</td><td>UP (weak)</td><td class='val-up'>+2</td></tr>
+<tr><td>Order Book</td><td>B/A 0.72</td><td class='val-down'>+0</td></tr>
+<tr><td>Macro</td><td>NEUTRAL</td><td class=''>+1</td></tr>
+</tbody>
+  </table>
+  <div class="score-bar"><div class="score-pip  filled red"></div><div class="score-pip  filled red"></div><div class="score-pip  filled red"></div><div class="score-pip  filled red"></div><div class="score-pip  filled red"></div><div class="score-pip  filled red"></div><div class="score-pip  filled red"></div><div class="score-pip  filled red"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-title">Timeframe Structure</div>
+  <table>
+    <thead><tr><th>TF</th><th>Trend</th><th>Structure</th><th>Volume</th><th>Last Candle</th><th>Signal</th></tr></thead>
+    <tbody><tr><td>4h</td><td>DOWN (weak)</td><td>LL</td><td>1.2x avg</td><td>Doji</td><td><span class="tag short">SHORT</span></td></tr>
+<tr><td>1h</td><td>SIDEWAYS</td><td>CHOPPY</td><td>1.9x avg</td><td>Bearish (31%)</td><td><span class="tag neutral">NEUTRAL</span></td></tr>
+<tr><td>5m</td><td>UP (weak)</td><td>HL</td><td>0.2x avg</td><td>Bearish (46%)</td><td><span class="tag long">LONG</span></td></tr>
+</tbody>
+  </table>
+  <div class="note"><strong>Alignment: 1/3 MIXED</strong></div>
+</div>
+
+<div class="grid-2">
+<div class="panel">
+  <div class="panel-title">Crypto Positioning</div>
+  <table>
+    <thead><tr><th>Indicator</th><th>Value</th><th>Trend (4h)</th></tr></thead>
+    <tbody>
+      <tr><td>Fear & Greed</td><td class="val-down">11 — Extreme Fear</td><td>—</td></tr>
+      <tr><td>Funding Rate</td><td>0.0055%</td><td>Next: 18:00 CET</td></tr>
+      <tr><td>Global L/S</td><td>1.31 (57%L)</td><td class="trend-arr">1.25 → 1.32 → 1.34 → 1.31</td></tr>
+      <tr><td>Top Trader L/S</td><td>0.94 (49%L)</td><td class="trend-arr">0.89 → 0.90 → 0.91 → 0.94</td></tr>
+      <tr><td>Taker Buy/Sell</td><td>0.86</td><td><span>0.82</span> → <span>1.28</span> → <span>1.03</span> → <span class="val-down">0.86</span></td></tr>
+      <tr><td>Open Interest</td><td>89,617 BTC</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><strong>Top traders 49%L vs retail 57%L — mild bearish lean</strong></div>
+</div>
+
+<div class="panel">
+  <div class="panel-title">CVD — Cumulative Volume Delta (2h)</div>
+  <div style="text-align:center;margin:20px 0;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:var(--red);">-1,483.95 BTC</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-dim);margin-top:8px;letter-spacing:2px;">NET SELLING PRESSURE</div>
+  </div>
+  <table><tbody>
+    <tr><td>Trend</td><td>FALLING</td></tr>
+    <tr><td>vs Price</td><td class="val-neutral">CONFIRMATION</td></tr>
+  </tbody></table>
+</div>
+</div>
+
+<div class="grid-2">
+<div class="panel">
+  <div class="panel-title">Order Book</div>
+  <table>
+    <thead><tr><th></th><th>Price</th><th>Size (BTC)</th></tr></thead>
+    <tbody>
+      <tr><td>Bid Wall</td><td class="val-up">$68,051</td><td class="val-up">4.46 BTC</td></tr>
+      <tr><td>Ask Wall</td><td class="val-down">$68,051</td><td>5.65 BTC</td></tr>
+    </tbody>
+  </table>
+  <table style="margin-top:12px;">
+    <thead><tr><th>Depth</th><th>Bids</th><th>Asks</th><th>Delta</th></tr></thead>
+    <tbody>
+      <tr><td>Top 20</td><td colspan="3"><span class="val-up">Bid/Ask ratio: 0.72</span></td></tr>
+      <tr><td>Full (500)</td><td>113.8 BTC</td><td>107.3 BTC</td><td class="val-up">+6.6 BTC</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="panel">
+  <div class="panel-title">Moving Averages</div>
+  <table>
+    <thead><tr><th>MA</th><th>Value</th><th>Distance</th><th>Position</th></tr></thead>
+    <tbody><tr><td>20 DMA</td><td>$68,363</td><td><span class="val-down">-0.45%</span></td><td>Below</td></tr>
+<tr><td>50 DMA</td><td>$68,596</td><td><span class="val-down">-0.79%</span></td><td>Below</td></tr>
+<tr><td>200 DMA</td><td>$88,875</td><td><span class="val-down">-23.43%</span></td><td>Below — macro bear</td></tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+<div class="grid-2">
+<div class="panel">
+  <div class="panel-title">Options Market (Deribit)</div>
+  <table>
+    <thead><tr><th>Expiry</th><th>Max Pain</th><th>P/C</th><th>Implication</th></tr></thead>
+    <tbody><tr><td>10APR26</td><td class='val-cyan'>$68,000</td><td>0.88</td><td>Below — pull down · Balanced</td></tr>
+<tr><td>11APR26</td><td class='val-cyan'>$68,000</td><td>1.69</td><td>Below — pull down · Puts dominant</td></tr>
+</tbody>
+  </table>
+</div>
+
+<div class="panel">
+  <div class="panel-title">Dominance</div>
+  <table>
+    <thead><tr><th>Asset</th><th>Dominance</th><th>Signal</th></tr></thead>
+    <tbody>
+      <tr><td>BTC</td><td class="val-cyan">56.6%</td><td>High — BTC holding value</td></tr>
+      <tr><td>ETH</td><td>10.4%</td><td>Low — altcoin weakness</td></tr>
+      <tr><td>USDT</td><td class="val-down">7.6%</td><td>Elevated — capital on sidelines</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="panel">
+  <div class="panel-title">Liquidation Clusters (Estimated)</div>
+  <div class="grid-2">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;margin-bottom:12px;">LONG LIQUIDATIONS (price drops)</div>
+      <div class="liq-row"><span class="liq-label">100x longs</span><span class="liq-val">~$67,381 <span class="liq-warn">⚠️ 0.99% away</span></span></div>
+      <div class="liq-row"><span class="liq-label">50x longs</span><span class="liq-val">~$66,701</span></div>
+      <div class="liq-row"><span class="liq-label">25x longs</span><span class="liq-val">~$65,340</span></div>
+      <div class="liq-row"><span class="liq-label">10x longs</span><span class="liq-val">~$61,256</span></div>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:12px;">SHORT LIQUIDATIONS (price rises)</div>
+      <div class="liq-row"><span class="liq-label">100x shorts</span><span class="liq-val">~$68,729 <span class="liq-warn">⚠️ 0.99% away</span></span></div>
+      <div class="liq-row"><span class="liq-label">50x shorts</span><span class="liq-val">~$69,409</span></div>
+      <div class="liq-row"><span class="liq-label">25x shorts</span><span class="liq-val">~$70,770</span></div>
+      <div class="liq-row"><span class="liq-label">10x shorts</span><span class="liq-val">~$74,854</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-title">Economic Calendar</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--cyan-dim);letter-spacing:2px;margin-bottom:10px;">RECENT (LAST 24H)</div>
+  <div class="cal-event">
+                <span class="cal-time">Mon 06 19:00</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">President Trump Speaks <span class="tag high">HIGH</span> <span style="color:var(--red)">⚠️ UNPREDICTABLE</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;"></span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Tue 07 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">Core Durable Goods Orders m/m <span class="tag medium">MEDIUM</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 0.5% | P: 0.4%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Tue 07 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">Durable Goods Orders m/m <span class="tag medium">MEDIUM</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: -1.1% | P: 0.0%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Tue 07 16:00</span>
+                <span class="cal-country">CAD</span>
+                <span class="cal-title">Ivey PMI <span class="tag medium">MEDIUM</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 55.9 | P: 56.6</span>
+            </div>
+
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--cyan-dim);letter-spacing:2px;margin:16px 0 10px;">TODAY — UPCOMING (CET)</div>
+  <div class="note">No events</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--cyan-dim);letter-spacing:2px;margin:16px 0 10px;">THIS WEEK</div>
+  <div class="cal-event">
+                <span class="cal-time">Thu 09 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">Final GDP q/q <span class="tag high">HIGH</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 0.7% | P: 0.7%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Thu 09 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">Final GDP Price Index q/q <span class="tag medium">MEDIUM</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 3.8% | P: 3.8%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Thu 09 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">Unemployment Claims <span class="tag medium">MEDIUM</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 210K | P: 202K</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Fri 10 03:30</span>
+                <span class="cal-country">CNY</span>
+                <span class="cal-title">CPI y/y <span class="tag medium">MEDIUM</span> <span style="color:var(--red)">⚠️ KEY EVENT</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 1.2% | P: 1.3%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Fri 10 03:30</span>
+                <span class="cal-country">CNY</span>
+                <span class="cal-title">PPI y/y <span class="tag medium">MEDIUM</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 0.4% | P: -0.9%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Fri 10 14:30</span>
+                <span class="cal-country">CAD</span>
+                <span class="cal-title">Employment Change <span class="tag high">HIGH</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 14.5K | P: -83.9K</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Fri 10 14:30</span>
+                <span class="cal-country">CAD</span>
+                <span class="cal-title">Unemployment Rate <span class="tag high">HIGH</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 6.8% | P: 6.7%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Fri 10 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">Core CPI m/m <span class="tag high">HIGH</span> <span style="color:var(--red)">⚠️ KEY EVENT</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 0.3% | P: 0.2%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Fri 10 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">CPI m/m <span class="tag high">HIGH</span> <span style="color:var(--red)">⚠️ KEY EVENT</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 1.0% | P: 0.3%</span>
+            </div>
+<div class="cal-event">
+                <span class="cal-time">Fri 10 14:30</span>
+                <span class="cal-country">USD</span>
+                <span class="cal-title">CPI y/y <span class="tag high">HIGH</span> <span style="color:var(--red)">⚠️ KEY EVENT</span></span>
+                <span style="color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">F: 3.4% | P: 2.4%</span>
+            </div>
+
+</div>
+
+<div class="panel">
+  <div class="panel-title">Traditional Markets</div>
+  <table>
+    <thead><tr><th>Asset</th><th>Price</th><th>1d</th><th>5d</th><th>BTC Corr</th></tr></thead>
+    <tbody><tr><td>DXY</td><td>99.91</td><td><span class="val-down">-0.07%</span></td><td><span class="val-up">+0.26%</span></td><td>NEGATIVE</td></tr>
+<tr><td>VIX</td><td>26.74</td><td><span class="val-up">+10.63%</span></td><td><span class="val-up">+8.96%</span></td><td>NEGATIVE</td></tr>
+<tr><td>Gold</td><td>$4660.1</td><td><span class="val-up">+0.07%</span></td><td><span class="val-down">-2.57%</span></td><td>POSITIVE</td></tr>
+<tr><td>Silver</td><td>$70.68</td><td><span class="val-down">-2.73%</span></td><td><span class="val-down">-6.84%</span></td><td>POSITIVE</td></tr>
+<tr><td>Oil</td><td>$116.3</td><td><span class="val-up">+3.46%</span></td><td><span class="val-up">+16.16%</span></td><td>MIXED</td></tr>
+</tbody>
+  </table>
+  <div class="note"><strong>Macro context: NEUTRAL</strong></div>
+</div>
+
+<div class="panel">
+  <div class="panel-title">Assessment</div>
+  <div class="note" style="font-size:13px;line-height:1.8;"><strong>Extreme Fear (11)</strong> — historically contrarian bullish, but requires macro confirmation.<br><br>BTC at $68,055, 23% below 200 DMA — deep in macro bear territory.<br><br><strong>No trade proposal — 1/3 MIXED, RED score.</strong> Wait for alignment.<br><br>Taker aggression flipped to sellers (0.86) — active selling pressure.</div>
+</div>
+
+<div style="text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:3px;">
+    PADAIWAN MARKET INTELLIGENCE · 2026-04-07 · 16:33 CET · Auto-refreshes hourly
+  </div>
+</div>
+
+</div>
+</body>
+</html>
