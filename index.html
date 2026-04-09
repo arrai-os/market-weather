@@ -63,12 +63,12 @@ tr:last-child td { border-bottom:none; }
 
 <div class="header">
   <h1>Market Weather</h1>
-  <div class="timestamp">2026-04-09 · ~21:34 CET · BTCUSDT</div>
-  <div class="mark-price">$71,821</div>
+  <div class="timestamp">2026-04-09 · ~21:39 CET · BTCUSDT</div>
+  <div class="mark-price">$71,900</div>
 </div>
 
 <div class="risk-orb-container">
-  <div class="risk-orb yellow">12/16</div>
+  <div class="risk-orb yellow">10/16</div>
   <div class="risk-label yellow">YELLOW — Extreme Fear · 1/3 MIXED alignment · Macro tailwind</div>
   <div class="risk-summary">1/3 MIXED alignment · Extreme Fear · Macro tailwind</div>
 </div>
@@ -83,82 +83,145 @@ tr:last-child td { border-bottom:none; }
 <tr><td>4h</td><td>UP (weak)</td><td class='val-up'>+2</td></tr>
 <tr><td>1h</td><td>DOWN</td><td class='val-down'>+0</td></tr>
 <tr><td>5m</td><td>SIDEWAYS</td><td class=''>+1</td></tr>
-<tr><td>Order Book</td><td>B/A 2.39</td><td class='val-up'>+2</td></tr>
+<tr><td>Order Book</td><td>B/A 0.21</td><td class='val-down'>+0</td></tr>
 <tr><td>Macro</td><td>TAILWIND</td><td class='val-up'>+2</td></tr>
 </tbody>
   </table>
-  <div class="score-bar"><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div></div>
+  <div class="score-bar"><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip  filled yellow"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div></div>
 </div>
 
 <div class="panel">
   <div class="panel-title">Timeframe Structure</div>
   <table>
     <thead><tr><th>TF</th><th>Trend</th><th>Structure</th><th>Volume</th><th>Last Candle</th><th>Signal</th></tr></thead>
-    <tbody><tr><td>4h</td><td>UP (weak)</td><td>HH</td><td>1.5x avg</td><td>Bearish (35%)</td><td><span class="tag long">LONG</span></td></tr>
-<tr><td>1h</td><td>DOWN</td><td>LH/LL</td><td>0.4x avg</td><td>Shooting star</td><td><span class="tag short">SHORT</span></td></tr>
-<tr><td>5m</td><td>SIDEWAYS</td><td>CHOPPY</td><td>0.4x avg</td><td>Shooting star</td><td><span class="tag neutral">NEUTRAL</span></td></tr>
+    <tbody><tr><td>4h</td><td>UP (weak)</td><td>HH</td><td>1.5x avg</td><td>Doji</td><td><span class="tag long">LONG</span></td></tr>
+<tr><td>1h</td><td>DOWN</td><td>LH/LL</td><td>0.5x avg</td><td>Doji</td><td><span class="tag short">SHORT</span></td></tr>
+<tr><td>5m</td><td>SIDEWAYS</td><td>CHOPPY</td><td>0.2x avg</td><td>Bullish (58%)</td><td><span class="tag neutral">NEUTRAL</span></td></tr>
 </tbody>
   </table>
   <div class="note"><strong>Alignment: 1/3 MIXED</strong></div>
 </div>
 
+<!-- ═══════════════ PHASE 2 VISUALS ═══════════════ -->
+
+<!-- Fear & Greed Radial + Sentiment Gauges -->
+<div class="panel" style="padding:24px;">
+  <div class="panel-title">Market Sentiment</div>
+  <div style="display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:20px;">
+    <!-- Fear & Greed Radial -->
+    <div style="text-align:center;">
+      <svg width="140" height="90" viewBox="0 0 140 90">
+        <defs>
+          <linearGradient id="fngGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ff4444"/>
+            <stop offset="25%" style="stop-color:#ff8800"/>
+            <stop offset="50%" style="stop-color:#888888"/>
+            <stop offset="75%" style="stop-color:#88cc44"/>
+            <stop offset="100%" style="stop-color:#00e676"/>
+          </linearGradient>
+        </defs>
+        <path d="M 15 80 A 55 55 0 0 1 125 80" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 15 80 A 55 55 0 0 1 125 80" fill="none" stroke="url(#fngGrad)" stroke-width="10" stroke-linecap="round"
+          stroke-dasharray="172.78745" stroke-dashoffset="148.597207"
+          style="transition:stroke-dashoffset 1s ease;"/>
+        <!-- Needle -->
+        <line x1="70" y1="80" x2="31.997304606476334" y2="62.117183028754816" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="70" cy="80" r="4" fill="white"/>
+        <text x="70" y="68" text-anchor="middle" fill="white" font-family="IBM Plex Mono" font-size="18" font-weight="600">14</text>
+      </svg>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:2px;margin-top:4px;">FEAR & GREED</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);">Extreme Fear</div>
+    </div>
+
+    <!-- Global L/S Gauge -->
+    <div style="text-align:center;">
+      <canvas id="gaugeLSGlobal" width="140" height="90" style="width:140px;height:90px;"></canvas>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:2px;margin-top:4px;">GLOBAL L/S</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">0.90 (47%L)</div>
+    </div>
+
+    <!-- Top Trader L/S Gauge -->
+    <div style="text-align:center;">
+      <canvas id="gaugeLSTop" width="140" height="90" style="width:140px;height:90px;"></canvas>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:2px;margin-top:4px;">TOP TRADER L/S</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">1.04 (51%L)</div>
+    </div>
+
+    <!-- Taker Ratio Gauge -->
+    <div style="text-align:center;">
+      <canvas id="gaugeTaker" width="140" height="90" style="width:140px;height:90px;"></canvas>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:2px;margin-top:4px;">TAKER B/S</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">1.003</div>
+    </div>
+  </div>
+  <div class="note" style="text-align:center;margin-top:12px;"><strong>Aligned — no contrarian edge</strong></div>
+  <div style="display:flex;justify-content:center;gap:16px;margin-top:8px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);">Funding: -0.0012% · Next: 02:00 CET</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);">OI: 92,819 BTC</span>
+  </div>
+</div>
+
+<!-- CVD Divergence Bars -->
+<div class="panel" style="padding:24px;">
+  <div class="panel-title">CVD Divergence — 2h / 5m candles</div>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <div style="flex:1;">
+      <canvas id="cvdBars" width="800" height="120" style="width:100%;height:120px;"></canvas>
+    </div>
+    <div style="min-width:140px;text-align:center;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:600;color:var(--red);">-11</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:2px;margin-top:4px;">BTC · RISING</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yellow);margin-top:8px;">DIVERGENCE</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:center;gap:16px;margin-top:8px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;"><span style="color:var(--green);">■</span> Buy delta</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;"><span style="color:var(--red);">■</span> Sell delta</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;"><span style="color:var(--gold);">■</span> Divergence</span>
+  </div>
+</div>
+
+<!-- Order Book Depth Mountain -->
+<div class="panel" style="padding:24px;">
+  <div class="panel-title">Order Book Depth</div>
+  <canvas id="depthMountain" width="1060" height="180" style="width:100%;height:180px;"></canvas>
+  <div style="display:flex;justify-content:space-between;margin-top:8px;">
+    <div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green);">■</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;"> Bids: 128 BTC</span>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);">
+      B/A ratio: 0.21 · Delta: <span class="val-down">-7 BTC</span>
+    </div>
+    <div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);">■</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;"> Asks: 135 BTC</span>
+    </div>
+  </div>
+</div>
+
 <div class="grid-2">
+<div class="panel">
+  <div class="panel-title">Moving Averages</div>
+  <table>
+    <thead><tr><th>MA</th><th>Value</th><th>Distance</th><th>Position</th></tr></thead>
+    <tbody><tr><td>20 DMA</td><td>$68,680</td><td><span class="val-up">+4.69%</span></td><td>Above</td></tr>
+<tr><td>50 DMA</td><td>$68,852</td><td><span class="val-up">+4.43%</span></td><td>Above</td></tr>
+<tr><td>200 DMA</td><td>$88,455</td><td><span class="val-down">-18.72%</span></td><td>Below — macro bear</td></tr>
+</tbody>
+  </table>
+</div>
+
 <div class="panel">
   <div class="panel-title">Crypto Positioning</div>
   <table>
     <thead><tr><th>Indicator</th><th>Value</th><th>Trend (4h)</th></tr></thead>
     <tbody>
-      <tr><td>Fear & Greed</td><td class="val-down">14 — Extreme Fear</td><td>—</td></tr>
-      <tr><td>Funding Rate</td><td>-0.0012%</td><td>Next: 02:00 CET</td></tr>
       <tr><td>Global L/S</td><td>0.90 (47%L)</td><td class="trend-arr">0.98 → 0.92 → 0.89 → 0.90</td></tr>
       <tr><td>Top Trader L/S</td><td>1.04 (51%L)</td><td class="trend-arr">1.06 → 1.05 → 1.03 → 1.04</td></tr>
       <tr><td>Taker Buy/Sell</td><td>1.00</td><td><span>1.22</span> → <span>0.84</span> → <span>1.09</span> → <span>1.00</span></td></tr>
-      <tr><td>Open Interest</td><td>92,818 BTC</td><td>—</td></tr>
+      <tr><td>Open Interest</td><td>92,819 BTC</td><td>—</td></tr>
     </tbody>
-  </table>
-  <div class="note"><strong>Aligned — no contrarian edge</strong></div>
-</div>
-
-<div class="panel">
-  <div class="panel-title">CVD — Cumulative Volume Delta (2h)</div>
-  <div style="text-align:center;margin:20px 0;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:var(--green);">+115.09 BTC</div>
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-dim);margin-top:8px;letter-spacing:2px;">NET BUYING PRESSURE</div>
-  </div>
-  <table><tbody>
-    <tr><td>Trend</td><td>RISING</td></tr>
-    <tr><td>vs Price</td><td class="val-neutral">DIVERGENCE</td></tr>
-  </tbody></table>
-</div>
-</div>
-
-<div class="grid-2">
-<div class="panel">
-  <div class="panel-title">Order Book</div>
-  <table>
-    <thead><tr><th></th><th>Price</th><th>Size (BTC)</th></tr></thead>
-    <tbody>
-      <tr><td>Bid Wall</td><td class="val-up">$71,821</td><td class="val-up">6.93 BTC</td></tr>
-      <tr><td>Ask Wall</td><td class="val-down">$71,821</td><td>2.49 BTC</td></tr>
-    </tbody>
-  </table>
-  <table style="margin-top:12px;">
-    <thead><tr><th>Depth</th><th>Bids</th><th>Asks</th><th>Delta</th></tr></thead>
-    <tbody>
-      <tr><td>Top 20</td><td colspan="3"><span class="val-up">Bid/Ask ratio: 2.39</span></td></tr>
-      <tr><td>Full (500)</td><td>115.8 BTC</td><td>104.9 BTC</td><td class="val-up">+10.9 BTC</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="panel">
-  <div class="panel-title">Moving Averages</div>
-  <table>
-    <thead><tr><th>MA</th><th>Value</th><th>Distance</th><th>Position</th></tr></thead>
-    <tbody><tr><td>20 DMA</td><td>$68,680</td><td><span class="val-up">+4.57%</span></td><td>Above</td></tr>
-<tr><td>50 DMA</td><td>$68,852</td><td><span class="val-up">+4.31%</span></td><td>Above</td></tr>
-<tr><td>200 DMA</td><td>$88,455</td><td><span class="val-down">-18.81%</span></td><td>Below — macro bear</td></tr>
-</tbody>
   </table>
 </div>
 </div>
@@ -192,17 +255,17 @@ tr:last-child td { border-bottom:none; }
   <div class="grid-2">
     <div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;margin-bottom:12px;">LONG LIQUIDATIONS (price drops)</div>
-      <div class="liq-row"><span class="liq-label">100x longs</span><span class="liq-val">~$71,110 <span class="liq-warn">⚠️ 0.99% away</span></span></div>
-      <div class="liq-row"><span class="liq-label">50x longs</span><span class="liq-val">~$70,391</span></div>
-      <div class="liq-row"><span class="liq-label">25x longs</span><span class="liq-val">~$68,955</span></div>
-      <div class="liq-row"><span class="liq-label">10x longs</span><span class="liq-val">~$64,646</span></div>
+      <div class="liq-row"><span class="liq-label">100x longs</span><span class="liq-val">~$71,188 <span class="liq-warn">⚠️ 0.99% away</span></span></div>
+      <div class="liq-row"><span class="liq-label">50x longs</span><span class="liq-val">~$70,469</span></div>
+      <div class="liq-row"><span class="liq-label">25x longs</span><span class="liq-val">~$69,031</span></div>
+      <div class="liq-row"><span class="liq-label">10x longs</span><span class="liq-val">~$64,717</span></div>
     </div>
     <div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:12px;">SHORT LIQUIDATIONS (price rises)</div>
-      <div class="liq-row"><span class="liq-label">100x shorts</span><span class="liq-val">~$72,532 <span class="liq-warn">⚠️ 0.99% away</span></span></div>
-      <div class="liq-row"><span class="liq-label">50x shorts</span><span class="liq-val">~$73,250</span></div>
-      <div class="liq-row"><span class="liq-label">25x shorts</span><span class="liq-val">~$74,686</span></div>
-      <div class="liq-row"><span class="liq-label">10x shorts</span><span class="liq-val">~$78,995</span></div>
+      <div class="liq-row"><span class="liq-label">100x shorts</span><span class="liq-val">~$72,611 <span class="liq-warn">⚠️ 0.99% away</span></span></div>
+      <div class="liq-row"><span class="liq-label">50x shorts</span><span class="liq-val">~$73,330</span></div>
+      <div class="liq-row"><span class="liq-label">25x shorts</span><span class="liq-val">~$74,768</span></div>
+      <div class="liq-row"><span class="liq-label">10x shorts</span><span class="liq-val">~$79,082</span></div>
     </div>
   </div>
 </div>
@@ -311,7 +374,7 @@ tr:last-child td { border-bottom:none; }
 
 <div class="panel">
   <div class="panel-title">Assessment</div>
-  <div class="note" style="font-size:13px;line-height:1.8;"><strong>Extreme Fear (14)</strong> — historically contrarian bullish, but requires macro confirmation.<br><br>BTC at $71,821, 19% below 200 DMA — deep in macro bear territory.<br><br><strong>No trade proposal — 1/3 MIXED, YELLOW score.</strong> Wait for alignment.</div>
+  <div class="note" style="font-size:13px;line-height:1.8;"><strong>Extreme Fear (14)</strong> — historically contrarian bullish, but requires macro confirmation.<br><br>BTC at $71,900, 19% below 200 DMA — deep in macro bear territory.<br><br><strong>No trade proposal — 1/3 MIXED, YELLOW score.</strong> Wait for alignment.</div>
 </div>
 
 <!-- ═══════════════ HISTORY VISUALIZATIONS ═══════════════ -->
@@ -390,14 +453,14 @@ tr:last-child td { border-bottom:none; }
 
 <div style="text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
   <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:3px;">
-    PADAIWAN MARKET INTELLIGENCE · 2026-04-09 · 21:34 CET · Auto-refreshes every 5 min
+    PADAIWAN MARKET INTELLIGENCE · 2026-04-09 · 21:39 CET · Auto-refreshes every 5 min
   </div>
 </div>
 
 </div>
 
 <script>
-const HISTORY = [{"ts":1775760181,"p":71912.1,"s":12,"l":"Y","fr":-0.0017,"oi":93294,"cvd":557.7,"obd":0.41,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760249,"p":71805.7,"s":11,"l":"Y","fr":-0.0017,"oi":93299,"cvd":496.0,"obd":0.15,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760300,"p":71817.6,"s":11,"l":"Y","fr":-0.0017,"oi":93351,"cvd":447.8,"obd":0.11,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760482,"p":71820.1,"s":12,"l":"Y","fr":-0.0017,"oi":93349,"cvd":738.0,"obd":54.09,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760783,"p":71836.1,"s":13,"l":"Y","fr":-0.0015,"oi":93307,"cvd":692.6,"obd":51.13,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775761085,"p":71843.1,"s":14,"l":"G","fr":-0.0014,"oi":93291,"cvd":550.0,"obd":1.73,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775761387,"p":71915.5,"s":13,"l":"Y","fr":-0.0012,"oi":93236,"cvd":-443.1,"obd":1.63,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761387,"p":71914.9,"s":13,"l":"Y","fr":-0.0012,"oi":93236,"cvd":-445.9,"obd":1.67,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761391,"p":71912.0,"s":12,"l":"Y","fr":-0.0012,"oi":93234,"cvd":-447.4,"obd":1.22,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761394,"p":71903.7,"s":12,"l":"Y","fr":-0.0012,"oi":93234,"cvd":-453.9,"obd":1.27,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761398,"p":71887.5,"s":11,"l":"Y","fr":-0.0012,"oi":93225,"cvd":-471.1,"obd":0.08,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761401,"p":71884.3,"s":11,"l":"Y","fr":-0.0012,"oi":93227,"cvd":-467.8,"obd":0.17,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761458,"p":71880.4,"s":13,"l":"Y","fr":-0.0011,"oi":93222,"cvd":-457.5,"obd":2.72,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761760,"p":72034.2,"s":11,"l":"Y","fr":-0.0011,"oi":93187,"cvd":-340.4,"obd":0.12,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775762062,"p":72015.2,"s":11,"l":"Y","fr":-0.001,"oi":93141,"cvd":-85.9,"obd":0.13,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775762363,"p":71926.3,"s":10,"l":"Y","fr":-0.001,"oi":92971,"cvd":-106.2,"obd":0.39,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775762665,"p":71747.3,"s":7,"l":"R","fr":-0.0013,"oi":92808,"cvd":138.4,"obd":0.25,"tr":1.003,"ls":0.9,"fg":14,"dom":"S"},{"ts":1775762967,"p":71800.2,"s":5,"l":"R","fr":-0.0014,"oi":92797,"cvd":-63.9,"obd":2.52,"tr":1.003,"ls":0.9,"fg":14,"dom":"S"},{"ts":1775763269,"p":71820.6,"s":12,"l":"Y","fr":-0.0012,"oi":92818,"cvd":115.1,"obd":2.39,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"}];
+const HISTORY = [{"ts":1775760181,"p":71912.1,"s":12,"l":"Y","fr":-0.0017,"oi":93294,"cvd":557.7,"obd":0.41,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760249,"p":71805.7,"s":11,"l":"Y","fr":-0.0017,"oi":93299,"cvd":496.0,"obd":0.15,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760300,"p":71817.6,"s":11,"l":"Y","fr":-0.0017,"oi":93351,"cvd":447.8,"obd":0.11,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760482,"p":71820.1,"s":12,"l":"Y","fr":-0.0017,"oi":93349,"cvd":738.0,"obd":54.09,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775760783,"p":71836.1,"s":13,"l":"Y","fr":-0.0015,"oi":93307,"cvd":692.6,"obd":51.13,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775761085,"p":71843.1,"s":14,"l":"G","fr":-0.0014,"oi":93291,"cvd":550.0,"obd":1.73,"tr":1.093,"ls":0.89,"fg":14,"dom":"L"},{"ts":1775761387,"p":71915.5,"s":13,"l":"Y","fr":-0.0012,"oi":93236,"cvd":-443.1,"obd":1.63,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761387,"p":71914.9,"s":13,"l":"Y","fr":-0.0012,"oi":93236,"cvd":-445.9,"obd":1.67,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761391,"p":71912.0,"s":12,"l":"Y","fr":-0.0012,"oi":93234,"cvd":-447.4,"obd":1.22,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761394,"p":71903.7,"s":12,"l":"Y","fr":-0.0012,"oi":93234,"cvd":-453.9,"obd":1.27,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761398,"p":71887.5,"s":11,"l":"Y","fr":-0.0012,"oi":93225,"cvd":-471.1,"obd":0.08,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761401,"p":71884.3,"s":11,"l":"Y","fr":-0.0012,"oi":93227,"cvd":-467.8,"obd":0.17,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761458,"p":71880.4,"s":13,"l":"Y","fr":-0.0011,"oi":93222,"cvd":-457.5,"obd":2.72,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775761760,"p":72034.2,"s":11,"l":"Y","fr":-0.0011,"oi":93187,"cvd":-340.4,"obd":0.12,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775762062,"p":72015.2,"s":11,"l":"Y","fr":-0.001,"oi":93141,"cvd":-85.9,"obd":0.13,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775762363,"p":71926.3,"s":10,"l":"Y","fr":-0.001,"oi":92971,"cvd":-106.2,"obd":0.39,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775762665,"p":71747.3,"s":7,"l":"R","fr":-0.0013,"oi":92808,"cvd":138.4,"obd":0.25,"tr":1.003,"ls":0.9,"fg":14,"dom":"S"},{"ts":1775762967,"p":71800.2,"s":5,"l":"R","fr":-0.0014,"oi":92797,"cvd":-63.9,"obd":2.52,"tr":1.003,"ls":0.9,"fg":14,"dom":"S"},{"ts":1775763269,"p":71820.6,"s":12,"l":"Y","fr":-0.0012,"oi":92818,"cvd":115.1,"obd":2.39,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"},{"ts":1775763571,"p":71899.5,"s":10,"l":"Y","fr":-0.0012,"oi":92819,"cvd":-11.3,"obd":0.21,"tr":1.003,"ls":0.9,"fg":14,"dom":"L"}];
 const ACCURACY = {};
 
 function drawScoreTimeline() {
@@ -595,11 +658,241 @@ function drawAccuracy() {
   el.innerHTML = html;
 }
 
+// Phase 2 data
+const DEPTH_BIDS = [[71899.4,1.992],[71898.6,0.002],[71897.8,0.003],[71897.2,0.031],[71896.5,0.005],[71896.0,0.003],[71895.5,0.005],[71894.9,0.158],[71894.4,0.147],[71893.8,0.004],[71893.3,0.128],[71892.8,0.028],[71892.1,0.229],[71891.5,0.007],[71890.9,0.487],[71890.3,0.001],[71889.7,0.003],[71889.2,0.081],[71888.7,0.004],[71888.2,0.002],[71887.7,0.03],[71887.1,0.003],[71886.5,0.154],[71885.9,0.53],[71885.4,0.004],[71884.8,0.759],[71883.9,0.05],[71883.4,0.003],[71882.9,2.328],[71882.3,0.02],[71881.8,0.002],[71881.2,0.086],[71880.6,0.324],[71880.1,2.115],[71879.6,0.004],[71878.8,0.45],[71878.2,0.002],[71877.6,0.006],[71877.1,0.028],[71876.5,0.365],[71876.0,0.053],[71875.5,0.368],[71874.9,0.004],[71874.4,0.49],[71873.9,0.317],[71873.4,0.015],[71872.8,0.007],[71872.2,0.002],[71871.6,0.002],[71871.0,0.002],[71870.4,0.002],[71869.9,0.003],[71869.4,0.002],[71868.6,0.006],[71868.1,0.004],[71867.5,0.003],[71866.9,0.066],[71866.4,0.009],[71865.8,0.002],[71865.3,0.003]];
+const DEPTH_ASKS = [[71899.5,8.948],[71900.4,0.003],[71901.0,0.03],[71901.6,0.006],[71902.3,0.001],[71903.1,0.709],[71903.7,0.002],[71904.2,0.001],[71905.0,0.002],[71905.7,0.001],[71906.3,0.206],[71906.8,0.001],[71907.5,0.007],[71908.0,0.006],[71908.6,0.003],[71909.1,0.066],[71909.9,0.059],[71910.4,0.002],[71910.9,0.051],[71911.4,0.049],[71911.9,0.056],[71912.4,0.005],[71912.9,0.002],[71913.5,0.327],[71914.0,0.556],[71914.6,0.005],[71915.2,0.112],[71915.7,0.497],[71916.5,0.013],[71917.0,0.038],[71917.5,0.534],[71918.0,0.046],[71918.6,0.007],[71919.3,0.018],[71919.9,0.001],[71920.4,0.069],[71920.9,0.006],[71921.5,0.009],[71922.0,0.524],[71922.7,0.002],[71923.3,0.168],[71923.8,0.073],[71924.5,0.288],[71925.4,0.002],[71925.9,0.001],[71926.5,0.464],[71927.0,0.003],[71927.6,0.029],[71928.1,0.367],[71928.6,0.243],[71929.1,0.005],[71929.8,0.368],[71930.3,0.001],[71930.8,0.005],[71931.3,0.836],[71931.8,0.335],[71932.3,0.004],[71932.8,0.128],[71933.4,0.038],[71933.9,0.344]];
+const K5M = [{"c":72381.6,"v":1060.6,"tbv":463.4},{"c":72333.7,"v":640.2,"tbv":297.9},{"c":72315.5,"v":506.1,"tbv":201.9},{"c":72306.9,"v":330.8,"tbv":177.7},{"c":71885.2,"v":1794.7,"tbv":674.7},{"c":71968.9,"v":729.6,"tbv":429.0},{"c":71856.9,"v":477.8,"tbv":227.8},{"c":71895.9,"v":492.7,"tbv":269.1},{"c":71822.3,"v":660.1,"tbv":349.4},{"c":71869.5,"v":638.1,"tbv":385.1},{"c":71827.7,"v":505.1,"tbv":283.0},{"c":71867.7,"v":321.1,"tbv":176.6},{"c":71820.0,"v":472.4,"tbv":224.1},{"c":71849.6,"v":276.8,"tbv":158.7},{"c":71838.5,"v":284.5,"tbv":133.4},{"c":71849.3,"v":258.2,"tbv":149.6},{"c":71887.9,"v":387.2,"tbv":203.7},{"c":72016.2,"v":768.3,"tbv":512.1},{"c":71993.4,"v":779.6,"tbv":474.7},{"c":71905.0,"v":1343.4,"tbv":701.7},{"c":71753.5,"v":531.0,"tbv":157.0},{"c":71785.0,"v":310.5,"tbv":141.8},{"c":71818.3,"v":320.0,"tbv":150.1},{"c":71899.4,"v":148.8,"tbv":70.5}];
+const GAUGE_VALUES = {
+  globalLS: 0.8997,
+  topLS: 1.0393,
+  taker: 1.0027
+};
+
+function drawGauge(canvasId, value, minV, maxV) {
+  const c = document.getElementById(canvasId);
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 140 * dpr; c.height = 90 * dpr;
+  ctx.scale(dpr, dpr);
+  const cx = 70, cy = 80, radius = 55;
+
+  // Background arc
+  ctx.beginPath(); ctx.arc(cx, cy, radius, Math.PI, 0);
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.stroke();
+
+  // Gradient arc
+  const grad = ctx.createLinearGradient(15, 0, 125, 0);
+  grad.addColorStop(0, '#ff4444');
+  grad.addColorStop(0.5, '#888888');
+  grad.addColorStop(1, '#00b4d8');
+
+  const norm = Math.max(0, Math.min(1, (value - minV) / (maxV - minV)));
+  const endAngle = Math.PI + norm * Math.PI;
+  ctx.beginPath(); ctx.arc(cx, cy, radius, Math.PI, endAngle);
+  ctx.strokeStyle = grad; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.stroke();
+
+  // Needle
+  const needleAngle = Math.PI + norm * Math.PI;
+  const nx = cx + 42 * Math.cos(needleAngle);
+  const ny = cy + 42 * Math.sin(needleAngle);
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(nx, ny);
+  ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+  ctx.fillStyle = 'white'; ctx.fill();
+
+  // Value text
+  ctx.fillStyle = '#e8f0f8'; ctx.font = '600 16px IBM Plex Mono'; ctx.textAlign = 'center';
+  ctx.fillText(value.toFixed(2), cx, 68);
+}
+
+function drawCVDBars() {
+  const c = document.getElementById('cvdBars');
+  if (!c || K5M.length < 2) return;
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr;
+  ctx.scale(dpr, dpr);
+  const W = c.clientWidth, H = c.clientHeight;
+  const pad = {t:5, b:5, l:5, r:5};
+  const cw = W - pad.l - pad.r, ch = H - pad.t - pad.b;
+
+  // Compute per-candle deltas
+  const deltas = K5M.map(k => k.tbv - (k.v - k.tbv));
+  const closes = K5M.map(k => k.c);
+  const maxDelta = Math.max(...deltas.map(Math.abs), 1);
+
+  // Zero line
+  const mid = pad.t + ch / 2;
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.l, mid); ctx.lineTo(pad.l + cw, mid); ctx.stroke();
+
+  const barW = Math.max((cw / deltas.length) - 2, 2);
+
+  for (let i = 0; i < deltas.length; i++) {
+    const x = pad.l + (i / deltas.length) * cw;
+    const h = (Math.abs(deltas[i]) / maxDelta) * (ch / 2);
+    const positive = deltas[i] >= 0;
+
+    // Check for divergence: delta sign vs price direction
+    let divergence = false;
+    if (i > 0) {
+      const priceUp = closes[i] > closes[i-1];
+      if ((positive && !priceUp) || (!positive && priceUp)) {
+        divergence = true;
+      }
+    }
+
+    if (divergence) {
+      ctx.fillStyle = positive ? 'rgba(0,230,118,0.3)' : 'rgba(255,68,68,0.3)';
+      ctx.strokeStyle = '#ffd700'; ctx.lineWidth = 1.5;
+    } else {
+      ctx.fillStyle = positive ? 'rgba(0,230,118,0.5)' : 'rgba(255,68,68,0.5)';
+      ctx.strokeStyle = 'transparent';
+    }
+
+    if (positive) {
+      ctx.fillRect(x, mid - h, barW, h);
+      if (divergence) ctx.strokeRect(x, mid - h, barW, h);
+    } else {
+      ctx.fillRect(x, mid, barW, h);
+      if (divergence) ctx.strokeRect(x, mid, barW, h);
+    }
+  }
+
+  // Price overlay line
+  const pMin = Math.min(...closes); const pMax = Math.max(...closes);
+  const pRange = pMax - pMin || 1;
+  ctx.beginPath();
+  for (let i = 0; i < closes.length; i++) {
+    const x = pad.l + (i / closes.length) * cw + barW / 2;
+    const y = pad.t + ch - ((closes[i] - pMin) / pRange) * ch;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = 'rgba(0,180,216,0.4)'; ctx.lineWidth = 1.5; ctx.stroke();
+}
+
+function drawDepthMountain() {
+  const c = document.getElementById('depthMountain');
+  if (!c || DEPTH_BIDS.length < 2) return;
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr;
+  ctx.scale(dpr, dpr);
+  const W = c.clientWidth, H = c.clientHeight;
+  const pad = {t:10, b:25, l:10, r:10};
+  const cw = W - pad.l - pad.r, ch = H - pad.t - pad.b;
+  const midX = pad.l + cw / 2;
+
+  // Compute cumulative depths
+  let bidCum = []; let sum = 0;
+  for (const [price, qty] of DEPTH_BIDS) {
+    sum += qty;
+    bidCum.push([price, sum]);
+  }
+  let askCum = []; sum = 0;
+  for (const [price, qty] of DEPTH_ASKS) {
+    sum += qty;
+    askCum.push([price, sum]);
+  }
+
+  const maxCum = Math.max(bidCum.length ? bidCum[bidCum.length-1][1] : 1, askCum.length ? askCum[askCum.length-1][1] : 1);
+
+  // Price range
+  const allPrices = [...bidCum.map(b=>b[0]), ...askCum.map(a=>a[0])];
+  const pMin = Math.min(...allPrices); const pMax = Math.max(...allPrices);
+  const pRange = pMax - pMin || 1;
+
+  function priceToX(p) { return pad.l + ((p - pMin) / pRange) * cw; }
+  function cumToY(c) { return pad.t + ch - (c / maxCum) * ch; }
+
+  // Bid mountain (left side, green)
+  ctx.beginPath();
+  ctx.moveTo(priceToX(bidCum[0][0]), pad.t + ch);
+  for (const [p, cum] of bidCum) {
+    ctx.lineTo(priceToX(p), cumToY(cum));
+  }
+  ctx.lineTo(priceToX(bidCum[bidCum.length-1][0]), pad.t + ch);
+  ctx.closePath();
+  const bidGrad = ctx.createLinearGradient(0, pad.t, 0, pad.t + ch);
+  bidGrad.addColorStop(0, 'rgba(0,230,118,0.3)');
+  bidGrad.addColorStop(1, 'rgba(0,230,118,0.02)');
+  ctx.fillStyle = bidGrad; ctx.fill();
+  ctx.strokeStyle = 'rgba(0,230,118,0.5)'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let i = 0; i < bidCum.length; i++) {
+    const [p, cum] = bidCum[i];
+    if (i === 0) ctx.moveTo(priceToX(p), cumToY(cum)); else ctx.lineTo(priceToX(p), cumToY(cum));
+  }
+  ctx.stroke();
+
+  // Ask mountain (right side, red)
+  ctx.beginPath();
+  ctx.moveTo(priceToX(askCum[0][0]), pad.t + ch);
+  for (const [p, cum] of askCum) {
+    ctx.lineTo(priceToX(p), cumToY(cum));
+  }
+  ctx.lineTo(priceToX(askCum[askCum.length-1][0]), pad.t + ch);
+  ctx.closePath();
+  const askGrad = ctx.createLinearGradient(0, pad.t, 0, pad.t + ch);
+  askGrad.addColorStop(0, 'rgba(255,68,68,0.3)');
+  askGrad.addColorStop(1, 'rgba(255,68,68,0.02)');
+  ctx.fillStyle = askGrad; ctx.fill();
+  ctx.strokeStyle = 'rgba(255,68,68,0.5)'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let i = 0; i < askCum.length; i++) {
+    const [p, cum] = askCum[i];
+    if (i === 0) ctx.moveTo(priceToX(p), cumToY(cum)); else ctx.lineTo(priceToX(p), cumToY(cum));
+  }
+  ctx.stroke();
+
+  // Current price line
+  const markPrice = 71899.50445277;
+  if (markPrice > 0) {
+    const mx = priceToX(markPrice);
+    ctx.setLineDash([4,4]);
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(mx, pad.t); ctx.lineTo(mx, pad.t + ch); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#e8f0f8'; ctx.font = '10px IBM Plex Mono'; ctx.textAlign = 'center';
+    ctx.fillText('$' + markPrice.toLocaleString(), mx, pad.t + ch + 14);
+  }
+
+  // Bid wall label
+  if (bidCum.length > 1) {
+    let maxWallIdx = 0, maxJump = 0;
+    for (let i = 1; i < bidCum.length; i++) {
+      const jump = bidCum[i][1] - bidCum[i-1][1];
+      if (jump > maxJump) { maxJump = jump; maxWallIdx = i; }
+    }
+    const wx = priceToX(bidCum[maxWallIdx][0]);
+    const wy = cumToY(bidCum[maxWallIdx][1]);
+    ctx.fillStyle = 'rgba(0,230,118,0.7)'; ctx.font = '9px IBM Plex Mono'; ctx.textAlign = 'center';
+    ctx.fillText('$' + Math.round(bidCum[maxWallIdx][0]).toLocaleString(), wx, wy - 6);
+  }
+  if (askCum.length > 1) {
+    let maxWallIdx = 0, maxJump = 0;
+    for (let i = 1; i < askCum.length; i++) {
+      const jump = askCum[i][1] - askCum[i-1][1];
+      if (jump > maxJump) { maxJump = jump; maxWallIdx = i; }
+    }
+    const wx = priceToX(askCum[maxWallIdx][0]);
+    const wy = cumToY(askCum[maxWallIdx][1]);
+    ctx.fillStyle = 'rgba(255,68,68,0.7)'; ctx.font = '9px IBM Plex Mono'; ctx.textAlign = 'center';
+    ctx.fillText('$' + Math.round(askCum[maxWallIdx][0]).toLocaleString(), wx, wy - 6);
+  }
+}
+
 drawScoreTimeline();
 drawPriceScore();
 drawFunding();
 drawAccuracy();
-window.addEventListener('resize', () => { drawScoreTimeline(); drawPriceScore(); drawFunding(); });
+drawGauge('gaugeLSGlobal', GAUGE_VALUES.globalLS, 0.5, 2.0);
+drawGauge('gaugeLSTop', GAUGE_VALUES.topLS, 0.5, 2.0);
+drawGauge('gaugeTaker', GAUGE_VALUES.taker, 0.7, 1.3);
+drawCVDBars();
+drawDepthMountain();
+window.addEventListener('resize', () => { drawScoreTimeline(); drawPriceScore(); drawFunding(); drawCVDBars(); drawDepthMountain(); });
 </script>
 
 </body>
